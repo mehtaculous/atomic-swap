@@ -10,7 +10,7 @@ contract Token is ERC20, Ownable {
         string memory _symbol,
         uint256 _supply
     ) ERC20(_name, _symbol) {
-        _mint(msg.sender, _supply * decimals());
+        _mint(msg.sender, _supply * 10**decimals());
     }
 
     function mint(address _to, uint256 _amount) external onlyOwner {
