@@ -4,8 +4,8 @@ pragma solidity 0.8.17;
 /// @notice Interface contract for AtomicSwap
 interface IAtomicSwap {
     struct SwapInfo {
-        bool initialized; // Boolean value reprensenting swap creation
-        uint88 expiry; // Unix timestamp of expiration
+        bool initialized; // Boolean value of swap initialization
+        uint88 expiry; // Unix timestamp of swap expiration
         address initiator; // Address of swap initiator
         address tokenX; // Contract address of initiator's token
         uint128 amountX; // Token amount being swapped by initator
