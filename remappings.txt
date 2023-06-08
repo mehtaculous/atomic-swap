@@ -1,7 +1,4 @@
-clones-with-immutable-args/=lib/clones-with-immutable-args/src
 ds-test/=lib/ds-test/src/
 forge-std/=lib/forge-std/src/
-murky/=lib/murky/src/
 @openzeppelin/=lib/openzeppelin-contracts/
-solady/=lib/solady/src/
 solmate/=lib/solmate/src/

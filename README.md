@@ -103,7 +103,7 @@ forge script script/Deploy.s.sol:Deploy --rpc-url $GOERLI_RPC_URL --private-key 
 
 2. Implement admin functionality using `Ownable` or `AccessControl`
 
-3. Allow for One to Many token swaps
+3. Allow for _One to Many_ token swaps
 
 4. An Oracle that calculates the token prices and verifies that they are both within a given ratio in order to successfully execute the swap
 
