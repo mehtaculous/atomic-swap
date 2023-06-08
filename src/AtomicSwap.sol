@@ -2,14 +2,14 @@
 pragma solidity 0.8.17;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import {IAtomicSwap, SwapInfo} from "./IAtomicSwap.sol";
+import {IAtomicSwap} from "./IAtomicSwap.sol";
 
 /// @title Atomic Swap
 /// @author swa.eth
 /// @notice Conducts atomic over-the-counter (OTC) swaps of ERC-20 tokens
 contract AtomicSwap is IAtomicSwap {
     /// @notice Mapping of swap ID to swap details
-    mapping(uint256 => SwapInfo) public swaps;
+    mapping(uint256 => IAtomicSwap.SwapInfo) public swaps;
 
     /// @notice Initializes a new swap and transfers caller's tokens to contract
     /// @param _tokenX Contract address of initiator's token
@@ -43,7 +43,7 @@ contract AtomicSwap is IAtomicSwap {
         if (_expiry <= block.timestamp) revert InvalidExpiry();
 
         // Maps swap ID to newly created swap info
-        swaps[swapId] = SwapInfo({
+        swaps[swapId] = IAtomicSwap.SwapInfo({
             initialized: true,
             expiry: _expiry,
             initiator: msg.sender,
@@ -73,7 +73,7 @@ contract AtomicSwap is IAtomicSwap {
     /// @notice Executes an initialized swap and escrows specified token amounts to both parties
     /// @param _swapId ID of the swap
     function execute(uint256 _swapId) external {
-        SwapInfo memory swap = swaps[_swapId];
+        IAtomicSwap.SwapInfo memory swap = swaps[_swapId];
         // Reverts if swap does not exist
         if (!swap.initialized) revert NotInitialized();
         // Reverts if caller is not set as counterparty of swap
@@ -95,7 +95,7 @@ contract AtomicSwap is IAtomicSwap {
     /// @notice Cancels an initialized swap and transfers token amount back to the initiator
     /// @param _swapId ID of the swap
     function cancel(uint256 _swapId) external {
-        SwapInfo memory swap = swaps[_swapId];
+        IAtomicSwap.SwapInfo memory swap = swaps[_swapId];
         // Reverts if swap does not exist
         if (!swap.initialized) revert NotInitialized();
         // Reverts if caller is not initiator of swap

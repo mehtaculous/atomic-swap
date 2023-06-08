@@ -1,18 +1,19 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
-struct SwapInfo {
-    bool initialized;
-    uint88 expiry;
-    address initiator;
-    address tokenX;
-    uint128 amountX;
-    uint128 amountY;
-    address tokenY;
-    address counterparty;
-}
-
+/// @notice Interface contract for AtomicSwap
 interface IAtomicSwap {
+    struct SwapInfo {
+        bool initialized; // Boolean value reprensenting swap creation
+        uint88 expiry; // Unix timestamp of expiration
+        address initiator; // Address of swap initiator
+        address tokenX; // Contract address of initiator's token
+        uint128 amountX; // Token amount being swapped by initator
+        uint128 amountY; // Token amount being swapped by counterparty
+        address tokenY; // Contract address of counterparty's token
+        address counterparty; // Address of counterparty
+    }
+
     error AlreadyInitialized();
     error InvalidExpiry();
     error NotAuthorized();
