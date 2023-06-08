@@ -1,0 +1,9 @@
+clones-with-immutable-args/=lib/clones-with-immutable-args/src
+ds-test/=lib/ds-test/src/
+forge-std/=lib/forge-std/src/
+@ethfs/=lib/ethfs/packages/contracts/src/
+murky/=lib/murky/src/
+@openzeppelin/=lib/openzeppelin-contracts/
+solady/=lib/solady/src/
+solmate/=lib/solmate/src/
+@sstore2/=lib/sstore2/contracts/
