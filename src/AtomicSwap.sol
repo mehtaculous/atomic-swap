@@ -8,7 +8,7 @@ import {IAtomicSwap} from "./IAtomicSwap.sol";
 /// @author swa.eth
 /// @notice Conducts atomic over-the-counter (OTC) swaps of ERC-20 tokens
 contract AtomicSwap is IAtomicSwap {
-    /// @notice Mapping of swap ID to swap details
+    /// @notice Mapping of swap ID to swap info struct
     mapping(uint256 => IAtomicSwap.SwapInfo) public swaps;
 
     /// @notice Initializes a new swap and transfers caller's tokens to contract
@@ -16,7 +16,7 @@ contract AtomicSwap is IAtomicSwap {
     /// @param _amountX Amount of tokens being swapped by initiator
     /// @param _counterparty Address of the counterparty
     /// @param _tokenY Contract address of the counterparty's token
-    /// @param _amountX Amount of tokens being swapped by the counterparty
+    /// @param _amountY Amount of tokens being swapped by the counterparty
     /// @param _expiry Unix timestamp for when swap is no longer valid
     /// returns swapId ID generated from the hashed swap info
     function initialize(
@@ -112,12 +112,12 @@ contract AtomicSwap is IAtomicSwap {
     }
 
     /// @notice Returns the unique swap ID generated from a hash of the swap info
-    /// @param _counterparty Address of the initiator who is creating the swap
+    /// @param _initiator Address of the initiator who is creating the swap
     /// @param _tokenX Contract address of initiator's token
     /// @param _amountX Amount of tokens being swapped by initiator
     /// @param _counterparty Address of the counterparty
     /// @param _tokenY Contract address of the counterparty's token
-    /// @param _amountX Amount of tokens being swapped by the counterparty
+    /// @param _amountY Amount of tokens being swapped by the counterparty
     /// @param _expiry Unix timestamp for when swap is no longer valid
     function getSwapId(
         address _initiator,
